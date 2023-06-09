@@ -11,8 +11,8 @@ const
         UseStaticFilesFromOrigin: false,
         StaticCDNLink: "https://static.koto.cc/StorjStatic",
         UseTweaks: true,
-        HideNavBar: true
-        // SortTheContents: true (todo)
+        HideNavBar: true,
+        SortContents: true
     }
 /* Ext Config End */
 
@@ -96,6 +96,14 @@ async function main(request) {
             ReplacedText = ReplacedText.replace(
                 "</head>",
                 `<link rel="stylesheet" href="${ExtFlags.StaticCDNLink}/NavHider.css">`
+                + "</head>"
+            );
+        }
+
+        if (ExtFlags.SortContents) {
+            ReplacedText = ReplacedText.replace(
+                "</head>",
+                `<script src="${ExtFlags.StaticCDNLink}/sort.js"></script>`
                 + "</head>"
             );
         }
